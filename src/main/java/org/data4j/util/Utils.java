@@ -10,4 +10,11 @@ public class ArrayUtils {
     }
     return -1;
   }
+  
+   // handle counter to work with foreach instead of for loop
+  public static <T> Consumer<T> withCounter(BiConsumer<Integer, T> consumer) {
+      AtomicInteger counter = new AtomicInteger(0);
+      return item -> consumer.accept(counter.getAndIncrement(), item);
+  }
+  
 }
